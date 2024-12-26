@@ -16,6 +16,6 @@ public class HelloController {
         model.addAttribute("uname", name);
         model.addAttribute("user", "donjoe");
         model.addAttribute("location", "hyderabad");
-        return "hello";
+        return "hello world";
     }
 }
