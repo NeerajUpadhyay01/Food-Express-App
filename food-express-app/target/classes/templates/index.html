@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <title>Food Express</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul class="navbar">
+        <div class="leftend">
+          <li>
+            <img
+              th:src="@{/images/logo.png}"
+              alt="Logo"
+              width="75"
+              height="75"
+            />
+          </li>
+          <li>Food Express</li>
+        </div>
+        <div class="rightend">
+          <a th:href="@{/users/login}" class="btn">Login</a>
+          <a th:href="@{/users/register}" class="btn">Register</a>
+        </div>
+      </ul>
+    </nav>
+
+    <div class="contain">
+      <div class="title-text">
+        <h1>Order Food</h1>
+        <h1 class="typewriter">
+          <p id="demo"></p>
+        </h1>
+        <div class="social-icons">
+          <p>Follow us on social media</p>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Twitter">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+      <div class="db-image">
+        <img th:src="@{/images/Delivery Boy.png}" alt="Delivery Boy" />
+      </div>
+    </div>
+
+    <!-- <div class="modal-overlay" id="signupModal">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <h2>Sign Up</h2>
+        <form id="signupForm" th:action="@{/users/register}" method="post">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+            required
+          />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+
+          <label for="phone">Phone Number:</label>
+          <input
+            type="text"
+            id="phone"
+            name="phoneNumber"
+            placeholder="Enter your phone number"
+            required
+          />
+
+          <label for="address">Address:</label>
+          <textarea
+            id="address"
+            name="address"
+            placeholder="Enter your address"
+            required
+          ></textarea>
+
+          <input type="submit" value="Sign Up" class="btn" />
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="signinModal">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <h2>Sign In</h2>
+        <form id="signinForm" th:action="@{/users/login}" method="post">
+          <label for="signinEmail">Email:</label>
+          <input
+            type="email"
+            id="signinEmail"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+
+          <label for="signinPassword">Password:</label>
+          <input
+            type="password"
+            id="signinPassword"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+
+          <input type="submit" value="Sign In" class="btn" />
+        </form>
+      </div>
+    </div> -->
+
+    <script src="/script.js"></script>
+  </body>
+</html>

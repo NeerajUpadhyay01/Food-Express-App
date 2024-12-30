@@ -37,15 +37,24 @@ public class UserService {
         existingUser.setName(user.getName());
         existingUser.setAddress(user.getAddress());
         existingUser.setContact(user.getContact());
-        existingUser.setPassword(user.getPassword());
         existingUser.setActive(user.isActive());
         return userRepository.save(existingUser);
     }
 
-    public void deactivateAccount(String userId) {
+    public void changePassword(String userId, String oldPassword, String newPassword) {
         User user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        user.setActive(false);
+        if (!user.getPassword().equals(oldPassword)) {
+            throw new RuntimeException("Old password is incorrect");
+        }
+        user.setPassword(newPassword);
+        userRepository.save(user);
+    }
+
+    public void toggleAccountStatus(String userId) {
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setActive(!user.isActive());
         userRepository.save(user);
     }
 

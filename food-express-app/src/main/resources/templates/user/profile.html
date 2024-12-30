@@ -41,56 +41,14 @@
                     <span th:text="${user.address}"></span>
                   </p>
                 </div>
-              </div>
-
-              <div class="card mb-4">
-                <div class="card-header">
-                  <h4>Update Profile</h4>
-                </div>
-                <div class="card-body">
-                  <form
-                    th:action="@{/users/profile/update}"
-                    th:object="${user}"
-                    method="post"
+                <div class="col-md-12 text-center">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    th:onclick="|location.href='@{/users/profile/update}'|"
                   >
-                    <input type="hidden" th:field="*{id}" />
-                    <input type="hidden" th:field="*{userId}" />
-                    <div class="mb-3">
-                      <label for="name" class="form-label">Name</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="name"
-                        th:field="*{name}"
-                        required
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label for="contact" class="form-label">Contact</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="contact"
-                        th:field="*{contact}"
-                        required
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label for="address" class="form-label">Address</label>
-                      <textarea
-                        class="form-control"
-                        id="address"
-                        th:field="*{address}"
-                        rows="3"
-                        required
-                      ></textarea>
-                    </div>
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">
-                        Update Profile
-                      </button>
-                    </div>
-                  </form>
+                    Update Profile
+                  </button>
                 </div>
               </div>
 
