@@ -31,4 +31,16 @@ public class User {
     public void generateUserId() {
         this.userId = "USER" + System.currentTimeMillis();
     }
+
+    public void setUsername(String username) {
+        this.name = username;
+    }
+
+    public void setId(String id) {
+        this.userId = id;
+    }
+
+    public void setPhone(String phone) {
+        this.contact = phone;
+    }
 }

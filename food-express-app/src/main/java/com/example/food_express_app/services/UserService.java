@@ -9,6 +9,7 @@ import com.example.food_express_app.repositories.UserRepository;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -64,5 +65,10 @@ public class UserService {
 
     public void logout() {
         session.invalidate();
+    }
+
+    public Optional<User> findByUserId(String userId) {
+        Optional<User> user = userRepository.findByUserId(userId);
+        return user;
     }
 }
