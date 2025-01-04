@@ -26,12 +26,18 @@ public class RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
-    public Restaurant updateRestaurant(Restaurant restaurant) {
-        Optional<Restaurant> existingRestaurant = restaurantRepository.findById(restaurant.getId());
+    public Restaurant updateRestaurant(Long id, Restaurant restaurant) {
+        Optional<Restaurant> existingRestaurant = restaurantRepository.findById(id);
         if (existingRestaurant.isPresent()) {
             Restaurant updatedRestaurant = existingRestaurant.get();
             updatedRestaurant.setName(restaurant.getName());
+            updatedRestaurant.setPassword(restaurant.getPassword());
+            updatedRestaurant.setEmail(restaurant.getEmail());
+            updatedRestaurant.setName(restaurant.getName());
             updatedRestaurant.setAddress(restaurant.getAddress());
+            updatedRestaurant.setOpenTime(restaurant.getOpenTime());
+            updatedRestaurant.setCloseTime(restaurant.getCloseTime());
+            updatedRestaurant.setContact(restaurant.getContact());
             // ...update other fields as necessary...
             return restaurantRepository.save(updatedRestaurant);
         } else {
@@ -47,8 +53,8 @@ public class RestaurantService {
         }
     }
 
-    public Restaurant loginRestaurant(String contact, String password) {
-        Restaurant restaurant = restaurantRepository.findByContact(contact)
+    public Restaurant loginRestaurant(String email, String password) {
+        Restaurant restaurant = restaurantRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Restaurant not found"));
         if (restaurant.getPassword().equals(password)) {
             return restaurant;

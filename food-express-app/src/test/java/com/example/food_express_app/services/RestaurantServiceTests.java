@@ -33,10 +33,12 @@ public class RestaurantServiceTests {
         restaurant1 = new Restaurant();
         restaurant1.setId(1L);
         restaurant1.setName("Restaurant 1");
+        restaurant1.setEmail("restaurant1@example.com");
 
         restaurant2 = new Restaurant();
         restaurant2.setId(2L);
         restaurant2.setName("Restaurant 2");
+        restaurant2.setEmail("restaurant2@example.com");
     }
 
     @Test
@@ -59,6 +61,7 @@ public class RestaurantServiceTests {
     public void testCreateRestaurant() {
         Restaurant restaurant = new Restaurant();
         restaurant.setName("New Restaurant");
+        restaurant.setEmail("newrestaurant@example.com");
 
         when(restaurantRepository.save(restaurant)).thenReturn(restaurant);
 
@@ -72,7 +75,7 @@ public class RestaurantServiceTests {
         when(restaurantRepository.findById(1L)).thenReturn(Optional.of(restaurant1));
         when(restaurantRepository.save(restaurant1)).thenReturn(restaurant1);
 
-        Restaurant updatedRestaurant = restaurantService.updateRestaurant(restaurant1);
+        Restaurant updatedRestaurant = restaurantService.updateRestaurant(restaurant1.getId(), restaurant1);
         assertThat(updatedRestaurant.getName()).isEqualTo("Updated Restaurant");
     }
 

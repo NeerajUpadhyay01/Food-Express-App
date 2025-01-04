@@ -8,6 +8,7 @@ import com.example.food_express_app.entities.Restaurant;
 import com.example.food_express_app.services.RestaurantService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/restaurant")
@@ -21,7 +22,7 @@ public class RestaurantController {
     }
 
     @GetMapping("/{id}")
-    public Restaurant getRestaurantById(@PathVariable Long id) {
+    public Optional<Restaurant> getRestaurantById(@PathVariable Long id) {
         return restaurantService.getRestaurantById(id);
     }
 
@@ -31,8 +32,8 @@ public class RestaurantController {
     }
 
     @PostMapping("/login")
-    public Restaurant loginRestaurant(@RequestParam String contact, @RequestParam String password) {
-        return restaurantService.loginRestaurant(contact, password);
+    public Restaurant loginRestaurant(@RequestParam String email, @RequestParam String password) {
+        return restaurantService.loginRestaurant(email, password);
     }
 
     @PutMapping("/{id}")

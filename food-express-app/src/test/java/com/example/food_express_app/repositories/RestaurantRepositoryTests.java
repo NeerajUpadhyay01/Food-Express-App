@@ -27,6 +27,7 @@ public class RestaurantRepositoryTests {
         // Arrange
         Restaurant restaurant = new Restaurant();
         restaurant.setName("Test Restaurant");
+        restaurant.setEmail("testrestaurant@example.com");
         restaurant.setPassword("Test Password");
         restaurant.setContact("12345");
         restaurant.setAddress("Test Address");
