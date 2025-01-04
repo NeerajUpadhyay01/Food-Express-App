@@ -1,72 +1,83 @@
-// package com.example.food_express_app.services;
+package com.example.food_express_app.services;
 
-// import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-// import com.example.food_express_app.entities.MenuItem;
+import com.example.food_express_app.entities.MenuItem;
 
-// import static org.junit.jupiter.api.Assertions.*;
-// import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
-// public class MenuItemServiceTests {
+@SpringBootTest
+public class MenuItemServiceTests {
 
-// @Test
-// void testGetAvailableItems() {
-// // Arrange
-// MenuItemService service = new MenuItemService();
-// // Act
-// List<MenuItem> items = service.getAvailableItems();
-// // Assert
-// assertNotNull(items);
-// assertFalse(items.isEmpty());
-// }
+    @Autowired
+    private MenuItemService service;
 
-// @Test
-// void testAddMenuItem() {
-// // Arrange
-// MenuItemService service = new MenuItemService();
-// MenuItem newItem = new MenuItem("New Item", 10.99, 100);
-// // Act
-// service.addMenuItem(newItem);
-// // Assert
-// assertTrue(service.getAvailableItems().contains(newItem));
-// }
+    private MenuItem newItem;
 
-// @Test
-// void testRemoveMenuItem() {
-// // Arrange
-// MenuItemService service = new MenuItemService();
-// MenuItem item = new MenuItem("Item to Remove", 5.99, 50);
-// service.addMenuItem(item);
-// // Act
-// service.removeMenuItem(item);
-// // Assert
-// assertFalse(service.getAvailableItems().contains(item));
-// }
+    @BeforeEach
+    void setUp() {
+        // Initialize test data if necessary
+        newItem = new MenuItem();
+        newItem.setName("New Item");
+        newItem.setPreparationTime(30);
+        newItem.setCategory("New Item");
+        newItem.setAvailable(true);
+        newItem.setDescription("New Item");
+        newItem.setPrice(4.99);
+        newItem.setStockQuantity(40);
+    }
 
-// @Test
-// void testUpdateMenuItem() {
-// // Arrange
-// MenuItemService service = new MenuItemService();
-// MenuItem item = new MenuItem("Item to Update", 7.99, 30);
-// service.addMenuItem(item);
-// MenuItem updatedItem = new MenuItem("Updated Item", 8.99, 30);
-// // Act
-// service.updateMenuItem(item, updatedItem);
-// // Assert
-// assertTrue(service.getAvailableItems().contains(updatedItem));
-// assertFalse(service.getAvailableItems().contains(item));
-// }
+    @Test
+    void testAddMenuItem() {
+        // Act
+        service.addMenuItem(newItem);
+        // Assert
+        assertTrue(service.getAvailableItems().contains(newItem));
+    }
 
-// @Test
-// void testUpdateStock() {
-// // Arrange
-// MenuItemService service = new MenuItemService();
-// MenuItem item = new MenuItem("Item to Update Stock", 6.99, 20);
-// service.addMenuItem(item);
-// int newStock = 50;
-// // Act
-// service.updateStock(item, newStock);
-// // Assert
-// assertEquals(newStock, item.getStock());
-// }
-// }
+    @Test
+    void testRemoveMenuItem() {
+        // Arrange
+        service.addMenuItem(newItem);
+        // Act
+        service.removeMenuItem(newItem.getId());
+        // Assert
+        assertFalse(service.getAvailableItems().contains(newItem));
+    }
+
+    @Test
+    void testGetAvailableItems() {
+        // Arrange
+        service.addMenuItem(newItem);
+        // Act
+        List<MenuItem> items = service.getAvailableItems();
+        // Assert
+        assertNotNull(items);
+        assertFalse(items.isEmpty());
+        assertTrue(items.contains(newItem));
+    }
+
+    @Test
+    void testUpdateMenuItem() {
+        // Arrange
+        service.addMenuItem(newItem);
+        newItem.setName("Updated Item");
+        // Assert
+        assertEquals(newItem, service.updateMenuItem(newItem.getId(), newItem));
+    }
+
+    @Test
+    void testUpdateStock() {
+        // Arrange
+        service.addMenuItem(newItem);
+        newItem.setStockQuantity(50);
+        // Act
+        service.updateStock(newItem.getId(), newItem.getStockQuantity(), newItem.isAvailable());
+        // Assert
+        assertEquals(50, service.getAvailableItems().get(0).getStockQuantity());
+    }
+}

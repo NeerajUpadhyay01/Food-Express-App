@@ -25,8 +25,13 @@ public class RestaurantRepositoryTests {
     @Test
     public void testFindByName() {
         // Arrange
-        com.example.food_express_app.entities.Restaurant restaurant = new Restaurant();
+        Restaurant restaurant = new Restaurant();
         restaurant.setName("Test Restaurant");
+        restaurant.setPassword("Test Password");
+        restaurant.setContact("12345");
+        restaurant.setAddress("Test Address");
+        restaurant.setOpenTime("11:00");
+        restaurant.setCloseTime("12:00");
         restaurantRepository.save(restaurant);
 
         // Act

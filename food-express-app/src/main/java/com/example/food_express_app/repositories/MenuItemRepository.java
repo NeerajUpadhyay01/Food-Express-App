@@ -12,4 +12,6 @@ public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
     List<MenuItem> findByCategory(String category);
 
     List<MenuItem> findByAvailableAndStockQuantityGreaterThan(boolean available, int quantity);
+
+    List<MenuItem> findAllByAvailable(boolean available);
 }

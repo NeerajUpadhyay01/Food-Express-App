@@ -1,80 +1,88 @@
-// package com.example.food_express_app.services;
+package com.example.food_express_app.services;
 
-// import com.example.food_express_app.models.Restaurant;
-// import com.example.food_express_app.repositories.RestaurantRepository;
-// import org.junit.jupiter.api.Test;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
+import com.example.food_express_app.entities.Restaurant;
+import com.example.food_express_app.repositories.RestaurantRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-// import java.util.Arrays;
-// import java.util.Optional;
+import java.util.Arrays;
+import java.util.Optional;
 
-// import static org.assertj.core.api.Assertions.assertThat;
-// import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
-// public class RestaurantServiceTests {
+public class RestaurantServiceTests {
 
-// @Mock
-// private RestaurantRepository restaurantRepository;
+    @Mock
+    private RestaurantRepository restaurantRepository;
 
-// @InjectMocks
-// private RestaurantService restaurantService;
+    @InjectMocks
+    private RestaurantService restaurantService;
 
-// public RestaurantServiceTests() {
-// MockitoAnnotations.openMocks(this);
-// }
+    public RestaurantServiceTests() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-// @Test
-// public void testGetAllRestaurants() {
-// Restaurant restaurant1 = new Restaurant();
-// restaurant1.setName("Restaurant 1");
-// Restaurant restaurant2 = new Restaurant();
-// restaurant2.setName("Restaurant 2");
+    private Restaurant restaurant1, restaurant2;
 
-// when(restaurantRepository.findAll()).thenReturn(Arrays.asList(restaurant1,
-// restaurant2));
+    @BeforeEach
+    void setUp() {
+        restaurant1 = new Restaurant();
+        restaurant1.setId(1L);
+        restaurant1.setName("Restaurant 1");
 
-// assertThat(restaurantService.getAllRestaurants()).hasSize(2).contains(restaurant1,
-// restaurant2);
-// }
+        restaurant2 = new Restaurant();
+        restaurant2.setId(2L);
+        restaurant2.setName("Restaurant 2");
+    }
 
-// @Test
-// public void testGetRestaurantById() {
-// Restaurant restaurant = new Restaurant();
-// restaurant.setName("Restaurant 1");
+    @Test
+    public void testGetAllRestaurants() {
+        when(restaurantRepository.findAll()).thenReturn(Arrays.asList(restaurant1, restaurant2));
 
-// when(restaurantRepository.findById(1L)).thenReturn(Optional.of(restaurant));
+        assertThat(restaurantService.getAllRestaurants()).hasSize(2).contains(restaurant1, restaurant2);
+    }
 
-// assertThat(restaurantService.getRestaurantById(1L)).isEqualTo(Optional.of(restaurant));
-// }
+    @Test
+    public void testGetRestaurantById() {
+        when(restaurantRepository.findById(1L)).thenReturn(Optional.of(restaurant1));
 
-// @Test
-// public void testCreateRestaurant() {
-// Restaurant restaurant = new Restaurant();
-// restaurant.setName("New Restaurant");
+        Optional<Restaurant> foundRestaurant = restaurantService.getRestaurantById(1L);
+        assertThat(foundRestaurant).isPresent();
+        assertThat(foundRestaurant.get()).isEqualTo(restaurant1);
+    }
 
-// when(restaurantRepository.save(restaurant)).thenReturn(restaurant);
+    @Test
+    public void testCreateRestaurant() {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setName("New Restaurant");
 
-// assertThat(restaurantService.createRestaurant(restaurant)).isEqualTo(restaurant);
-// }
+        when(restaurantRepository.save(restaurant)).thenReturn(restaurant);
 
-// @Test
-// public void testUpdateRestaurant() {
-// Restaurant restaurant = new Restaurant();
-// restaurant.setName("Updated Restaurant");
+        assertThat(restaurantService.createRestaurant(restaurant)).isEqualTo(restaurant);
+    }
 
-// when(restaurantRepository.save(restaurant)).thenReturn(restaurant);
+    @Test
+    public void testUpdateRestaurant() {
+        restaurant1.setName("Updated Restaurant");
 
-// assertThat(restaurantService.updateRestaurant(restaurant)).isEqualTo(restaurant);
-// }
+        when(restaurantRepository.findById(1L)).thenReturn(Optional.of(restaurant1));
+        when(restaurantRepository.save(restaurant1)).thenReturn(restaurant1);
 
-// @Test
-// public void testDeleteRestaurant() {
-// doNothing().when(restaurantRepository).deleteById(1L);
+        Restaurant updatedRestaurant = restaurantService.updateRestaurant(restaurant1);
+        assertThat(updatedRestaurant.getName()).isEqualTo("Updated Restaurant");
+    }
 
-// restaurantService.deleteRestaurant(1L);
+    @Test
+    public void testDeleteRestaurant() {
+        when(restaurantRepository.existsById(1L)).thenReturn(true);
+        doNothing().when(restaurantRepository).deleteById(1L);
 
-// verify(restaurantRepository, times(1)).deleteById(1L);
-// }
-// }
+        restaurantService.deleteRestaurant(1L);
+
+        verify(restaurantRepository, times(1)).deleteById(1L);
+    }
+}

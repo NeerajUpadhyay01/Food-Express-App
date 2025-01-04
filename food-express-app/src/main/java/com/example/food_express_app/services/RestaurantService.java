@@ -7,6 +7,7 @@ import com.example.food_express_app.entities.Restaurant;
 import com.example.food_express_app.repositories.RestaurantRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RestaurantService {
@@ -17,31 +18,33 @@ public class RestaurantService {
         return restaurantRepository.findAll();
     }
 
-    public Restaurant getRestaurantById(Long id) {
-        return restaurantRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Restaurant not found"));
+    public Optional<Restaurant> getRestaurantById(Long id) {
+        return restaurantRepository.findById(id);
     }
 
     public Restaurant createRestaurant(Restaurant restaurant) {
         return restaurantRepository.save(restaurant);
     }
 
-    public Restaurant updateRestaurant(Long id, Restaurant restaurantDetails) {
-        Restaurant restaurant = getRestaurantById(id);
-
-        restaurant.setName(restaurantDetails.getName());
-        restaurant.setAddress(restaurantDetails.getAddress());
-        restaurant.setContact(restaurantDetails.getContact());
-        restaurant.setOpenTime(restaurantDetails.getOpenTime());
-        restaurant.setCloseTime(restaurantDetails.getCloseTime());
-        restaurant.setPassword(restaurantDetails.getPassword());
-
-        return restaurantRepository.save(restaurant);
+    public Restaurant updateRestaurant(Restaurant restaurant) {
+        Optional<Restaurant> existingRestaurant = restaurantRepository.findById(restaurant.getId());
+        if (existingRestaurant.isPresent()) {
+            Restaurant updatedRestaurant = existingRestaurant.get();
+            updatedRestaurant.setName(restaurant.getName());
+            updatedRestaurant.setAddress(restaurant.getAddress());
+            // ...update other fields as necessary...
+            return restaurantRepository.save(updatedRestaurant);
+        } else {
+            throw new RuntimeException("Restaurant not found");
+        }
     }
 
     public void deleteRestaurant(Long id) {
-        Restaurant restaurant = getRestaurantById(id);
-        restaurantRepository.delete(restaurant);
+        if (restaurantRepository.existsById(id)) {
+            restaurantRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Restaurant not found");
+        }
     }
 
     public Restaurant loginRestaurant(String contact, String password) {

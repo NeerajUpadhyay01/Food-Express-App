@@ -12,33 +12,33 @@ import com.example.food_express_app.entities.MenuItem;
 @Service
 public class MenuItemService {
     @Autowired
-    private MenuItemRepository repository;
+    private MenuItemRepository menuItemRepository;
 
     public List<MenuItem> getAvailableItems() {
-        return repository.findByAvailableAndStockQuantityGreaterThan(true, 0);
+        return menuItemRepository.findAllByAvailable(true);
     }
 
     public MenuItem addMenuItem(MenuItem item) {
-        return repository.save(item);
+        return menuItemRepository.save(item);
     }
 
     public void removeMenuItem(Long id) {
-        repository.deleteById(id);
+        menuItemRepository.deleteById(id);
     }
 
     public MenuItem updateMenuItem(Long id, MenuItem item) {
-        MenuItem existingItem = repository.findById(id)
+        MenuItem existingItem = menuItemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Menu item not found"));
 
         BeanUtils.copyProperties(item, existingItem, "id");
-        return repository.save(existingItem);
+        return menuItemRepository.save(existingItem);
     }
 
     public void updateStock(Long id, int quantity, boolean available) {
-        MenuItem item = repository.findById(id)
+        MenuItem item = menuItemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Menu item not found"));
         item.setStockQuantity(quantity);
         item.setAvailable(available);
-        repository.save(item);
+        menuItemRepository.save(item);
     }
 }

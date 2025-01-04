@@ -34,5 +34,9 @@ public class MenuItem {
         this.stockQuantity = quantity;
     }
 
+    public void setPrice(double d) {
+        this.price = BigDecimal.valueOf(d);
+    }
+
     // Getters, setters, constructors
 }
