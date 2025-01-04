@@ -29,15 +29,15 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void testFindByNameAndPassword() {
+    public void testFindByEmailAndPassword() {
         User user = new User();
-        user.setName("testUser");
+        user.setEmail("testUser@example.com");
         user.setPassword("password");
         userRepository.save(user);
 
-        Optional<User> foundUser = userRepository.findByNameAndPassword("testUser", "password");
+        Optional<User> foundUser = userRepository.findByEmailAndPassword("testUser@example.com", "password");
         assertThat(foundUser).isPresent();
-        assertThat(foundUser.get().getName()).isEqualTo("testUser");
+        assertThat(foundUser.get().getEmail()).isEqualTo("testUser@example.com");
     }
 
     @Test

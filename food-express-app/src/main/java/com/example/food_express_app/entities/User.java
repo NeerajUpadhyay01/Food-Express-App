@@ -23,6 +23,7 @@ public class User {
     private String contact;
     private String address;
     private boolean active = true;
+    private String email;
 
     // @OneToMany(mappedBy = "user")
     // private List<Order> orderHistory;

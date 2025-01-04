@@ -20,14 +20,14 @@ public class UserService {
     @Autowired
     private HttpSession session;
 
-    public User login(String name, String password) {
-        return userRepository.findByNameAndPassword(name, password)
+    public User login(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password)
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }
 
     public User registerUser(User user) {
-        if (userRepository.findByName(user.getName()).isPresent()) {
-            throw new RuntimeException("Username already exists");
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already exists");
         }
         return userRepository.save(user);
     }

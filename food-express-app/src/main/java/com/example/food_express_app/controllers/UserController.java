@@ -24,12 +24,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestParam String name,
+    public String loginUser(@RequestParam String email,
             @RequestParam String password,
             HttpSession session,
             RedirectAttributes redirectAttributes) {
         try {
-            User user = userService.login(name, password);
+            User user = userService.login(email, password);
             session.setAttribute("loggedInUser", user);
             // return ResponseEntity.ok().body("You have logged in successfully!!");
             return "/home";

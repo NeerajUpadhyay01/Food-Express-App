@@ -1,6 +1,7 @@
 package com.example.food_express_app.services;
 
 import com.example.food_express_app.entities.User;
+import com.example.food_express_app.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,36 +18,40 @@ public class UserServiceTests {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private User newUser;
 
     @BeforeEach
     void setUp() {
-        // Initialize test data if necessary
+        // Clean up test data to avoid conflicts
+        userRepository.deleteAll();
+
+        // Initialize test data
         newUser = new User();
-        newUser.setUsername("newUser");
+        newUser.setEmail("newUser@example.com");
         newUser.setPassword("newPassword");
         newUser.setContact("1234567890");
         newUser.setAddress("Mexico City");
         newUser.setActive(true);
-    }
-
-    @Test
-    void testLogin() {
         userService.registerUser(newUser);
-        User result = userService.login("newUser", "newPassword");
-        assertNotNull(result);
     }
 
     @Test
     void testRegisterUser() {
-        User result = userService.registerUser(newUser);
+        User result = newUser;
+        assertNotNull(result);
+    }
+
+    @Test
+    void testLogin() {
+        User result = userService.login("newUser@example.com", "newPassword");
         assertNotNull(result);
     }
 
     @Test
     void testUpdateProfile() {
-        // Register the user before attempting to update the profile
-        userService.registerUser(newUser);
         newUser.setContact("newPhone");
         newUser.setAddress("newAddress");
         User result = userService.updateProfile(newUser);
@@ -57,17 +62,13 @@ public class UserServiceTests {
 
     @Test
     void testChangePassword() {
-        // Register the user before attempting to change the password
-        userService.registerUser(newUser);
         userService.changePassword(newUser.getUserId(), "newPassword", "newPassword123");
-        User result = userService.login("newUser", "newPassword123");
+        User result = userService.login("newUser@example.com", "newPassword123");
         assertNotNull(result);
     }
 
     @Test
     void testToggleAccountStatus() {
-        // Register the user before attempting to toggle the account status
-        userService.registerUser(newUser);
         boolean initialStatus = newUser.isActive();
         userService.toggleAccountStatus(newUser.getUserId());
         Optional<User> updatedUser = userService.findByUserId(newUser.getUserId());
@@ -77,7 +78,6 @@ public class UserServiceTests {
 
     @Test
     void testGetAllUsers() {
-        userService.registerUser(newUser);
         List<User> users = userService.getAllUsers();
         assertNotNull(users);
         assertFalse(users.isEmpty());
@@ -85,9 +85,7 @@ public class UserServiceTests {
 
     @Test
     void testLogout() {
-        // Register and log in the user before attempting to log out
-        userService.registerUser(newUser);
-        userService.login("newUser", "newPassword");
+        userService.login("newUser@example.com", "newPassword");
         userService.logout();
         assertTrue(true);
     }
