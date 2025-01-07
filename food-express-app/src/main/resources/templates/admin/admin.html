@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Admin - Food Express</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <div class="leftend">
+                <li><img src="images/logo.png" alt="Logo" width="75px" height="75px"></li>
+                <li>Food Express Admin</li>
+            </div>
+            <div class="center">
+                <li class="active"><a href="#">All Restaurant</a></li>
+                <li><a href="adminAddRestaurant.html">Add Restaurant</a></li>
+            </div>
+            <div class="rightend">
+                <a href="#"><button class="btn">Logout</button></a>
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Restaurant List</h1>
+    </header>
+    </div>
+
+    <div class="container">
+        <!-- Example restaurant card with delete option -->
+        <div class="card">
+            <div class="image-container">
+                <img src="images/Dominos.jpg" alt="Image of Restaurant 1">
+            </div>
+            <div class="content">
+                <div>
+                    <div class="title">Spicy Delight</div>
+                    <div class="location">Address: 123 Main Street, City</div>
+                    <div class="contact">Contact: +91 9876543210</div>
+                    <div class="timing">
+                        <span>Open Time: 9:00 AM</span> | 
+                        <span>Close Time: 11:00 PM</span>
+                    </div>
+                </div>
+                <button class="btn delete" onclick="deleteRestaurant('Spicy Delight')">Delete Restaurant</button>
+            </div>
+        </div>
+
+        <!-- Another example restaurant card with delete option -->
+        <div class="card">
+            <div class="image-container">
+                <img src="images/BOX8.jpg" alt="Image of Restaurant 2">
+            </div>
+            <div class="content">
+                <div>
+                    <div class="title">Taste Paradise</div>
+                    <div class="location">Address: 456 Elm Street, City</div>
+                    <div class="contact">Contact: +91 8765432109</div>
+                    <div class="timing">
+                        <span>Open Time: 8:00 AM</span> | 
+                        <span>Close Time: 10:00 PM</span>
+                    </div>
+                </div>
+                <button class="btn delete" onclick="deleteRestaurant('Taste Paradise')">Delete Restaurant</button>
+            </div>
+        </div>
+
+        <!-- Add more restaurant cards as needed -->
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        function deleteRestaurant(restaurantName) {
+            if (confirm('Are you sure you want to delete ' + restaurantName + '?')) {
+                // Add logic here to handle deletion (e.g., sending a request to the server)
+                alert(restaurantName + ' has been deleted!');
+            }
+        }
+    </script>
+</body>
+
+</html>

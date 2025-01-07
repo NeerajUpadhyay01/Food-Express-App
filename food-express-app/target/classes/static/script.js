@@ -31,4 +31,30 @@ function typeWriter(iteration) {
     type();
 }
 
+function showModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+}
 
+function closeModal() {
+    document.querySelectorAll('.modal-overlay').forEach(function(modal) {
+        modal.style.display = 'none';
+    });
+}
+
+document.querySelectorAll('.quantity-container').forEach(container => {
+    const minusBtn = container.querySelector('.minus');
+    const plusBtn = container.querySelector('.plus');
+    const quantityInput = container.querySelector('.quantity-number');
+
+    minusBtn.addEventListener('click', () => {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {  // Update to ensure minimum value is 1
+            quantityInput.value = currentValue - 1;
+        }
+    });
+
+    plusBtn.addEventListener('click', () => {
+        let currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+    });
+});

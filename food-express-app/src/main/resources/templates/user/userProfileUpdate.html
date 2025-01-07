@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@700&display=swap"
+        rel="stylesheet">
+    <title>User Profile Update - Food Express</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <div class="leftend">
+                <li><img src="images/logo.png" alt="Logo" width="75px" height="75px"></li>
+                <li>Food Express</li>
+            </div>
+            <div class="center">
+                <li><a href="home.html">Home</a></li>
+                <li class="active"><a href="userProfileUpdate.html">Update Profile</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="orders.html">Orders</a></li>
+            </div>
+            <div class="rightend">
+                <a href="logout.html"><button class="btn">Logout</button></a>
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Update Your Profile</h1>
+    </header>
+
+    <div class="form-content">
+        <form action="updateUserProfileServlet" method="POST">
+            <h2>User Profile</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="text" id="contact" name="contact" placeholder="Enter your contact number" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" placeholder="Enter your address" rows="4" required></textarea>
+
+            <label for="currentPassword">Current Password:</label>
+            <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter your current password" required>
+
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Enter your new password">
+
+            <label for="confirmPassword">Confirm New Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your new password">
+
+            <button type="submit" class="btn">Update Profile</button>
+        </form>
+    </div>
+</body>
+
+</html>

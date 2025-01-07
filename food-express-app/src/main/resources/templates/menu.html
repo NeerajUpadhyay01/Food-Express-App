@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@700&display=swap"
+        rel="stylesheet">
+    <title>Menu - Food Express</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <div class="leftend">
+                <li><img src="images/logo.png" alt="Logo" width="75px" height="75px"></li>
+                <li>Food Express</li>
+            </div>
+            <div class="center">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#">Cart</a></li>
+                <li><a href="#">Orders</a></li>
+            </div>
+            <div class="rightend">
+                <a href="logout"><button class="btn">Logout</button></a>
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Restaurant 1 </h1>
+        
+        <p>description of restaurant 1</p>
+    </header>
+
+    <div class="menu-container">
+        <!-- Example of a menu item -->
+        <div class="menu-card">
+            <div class="menu-image-container">
+                <img src="images/dindigulThalappakatti.jpg" alt="Image of Sample Dish">
+            </div>
+            <div class="menu-content">
+                <div class="menu-title">Sample Dish</div>
+                <div class="menu-category">Category: Starter</div>
+                <div class="menu-description">A delicious starter to whet your appetite.</div>
+                <div class="menu-price">₹250</div>
+                <div class="menu-preparation-time">Prep Time: 15 mins</div>
+                <div class="menu-stock">Stock: 10</div>
+                <form action="#">
+                    <input type="hidden" name="menuItemId" value="1">
+                    <div class="quantity-container">
+                        <button type="button" class="quantity-btn minus">-</button>
+                        <input type="text" name="quantity" value="1" class="quantity-number" readonly>
+                        <button type="button" class="quantity-btn plus">+</button>
+                    </div>
+                    <input type="submit" class="btn" value="Add to Cart">
+                    <input type="hidden" name="action" value="add">
+                </form>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="menu-image-container">
+                <img src="images/A2B.jpg" alt="Image of Sample Dish">
+            </div>
+            <div class="menu-content">
+                <div class="menu-title">Sample Dish2</div>
+                <div class="menu-category">Category: Starter</div>
+                <div class="menu-description">A delicious starter to whet your appetite.</div>
+                <div class="menu-price">₹250</div>
+                <div class="menu-preparation-time">Prep Time: 15 mins</div>
+                <div class="menu-stock">Stock: 10</div>
+                <form action="#" >
+                    <input type="hidden" name="menuItemId" value="1">
+                    <div class="quantity-container">
+                        <button type="button" class="quantity-btn minus">-</button>
+                        <input type="text" name="quantity" value="1" class="quantity-number" readonly>
+                        <button type="button" class="quantity-btn plus">+</button>
+                    </div>
+                    <input type="submit" class="btn" value="Add to Cart">
+                    <input type="hidden" name="action" value="add">
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Admin - Food Express</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <div class="leftend">
+                <li><img src="images/logo.png" alt="Logo" width="75px" height="75px"></li>
+                <li>Food Express Admin</li>
+            </div>
+            <div class="center">
+                <li><a href="admin.html">All Restaurant</a></li>
+                <li class="active"><a href="#">Add Restaurant</a></li>
+                <li><a href="#">Reviews</a></li>
+            </div>
+            <div class="rightend">
+                <a href="#"><button class="btn">Logout</button></a>
+            </div>
+        </ul>
+    </nav>
+
+
+    <div class="form-content">
+        <h2>Add Restaurant</h2>
+        <form id="addRestaurantForm">
+            <label for="restaurantName">Restaurant Name:</label>
+            <input type="text" id="restaurantName" name="restaurantName" placeholder="Enter restaurant name" required>
+
+            <label for="restaurantAddress">Address:</label>
+            <input type="text" id="restaurantAddress" name="restaurantAddress" placeholder="Enter address" required>
+
+            <label for="restaurantContact">Contact:</label>
+            <input type="text" id="restaurantContact" name="restaurantContact" placeholder="Enter contact" required>
+
+            <label for="restaurantOpenTime">Open Time:</label>
+            <input type="text" id="restaurantOpenTime" name="restaurantOpenTime" required>
+
+            <label for="restaurantCloseTime">Close Time:</label>
+            <input type="text" id="restaurantCloseTime" name="restaurantCloseTime" required>
+
+            <label for="restaurantPassword">Password:</label>
+            <input type="password" id="restaurantPassword" name="restaurantPassword" placeholder="Enter password"
+                required>
+
+            <input type="submit" value="Add Restaurant" class="btn">
+        </form>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

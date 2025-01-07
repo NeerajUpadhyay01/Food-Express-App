@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Food Express</title>
+  </head>
+
+  <body>
+    <nav>
+      <ul class="navbar">
+        <div class="leftend">
+          <li>
+            <img
+              th:src="@{/images/logo.png}"
+              alt="Logo"
+              width="75px"
+              height="75px"
+            />
+          </li>
+          <li>Food Express</li>
+        </div>
+        <div class="center">
+          <li><a th:href="@{/users/profile}">Profile</a></li>
+          <li><a href="#">Restaurants</a></li>
+          <li><a href="#">Cart</a></li>
+          <li><a href="#">Orders</a></li>
+        </div>
+        <div class="rightend">
+          <a th:href="@{/users/logout}"><button class="btn">Logout</button></a>
+        </div>
+      </ul>
+    </nav>
+
+    <header>
+      <h1>Restaurant List</h1>
+    </header>
+
+    <div class="container">
+      <!-- <div th:each="restaurant : ${restaurants}">
+        <div class="card">
+          <div class="image-container">
+            <img
+              th:src="@{${/images/restaurant.image}}"
+              alt="Image of Restaurant"
+            />
+          </div>
+          <div class="content">
+            <div>
+              <div class="title" th:text="Restaurant 1"></div>
+              <div class="rating-container">
+                <div class="rating-title">Rating:</div>
+                <div class="rating" th:text="4.5"></div>
+                <div class="time-title">Delivery Time:</div>
+                <div class="time" th:text="${restaurant.deliveryTime}">
+                  30 mins
+                </div>
+              </div>
+              <div class="description" th:text="${restaurant.description}">
+                Cuisine
+              </div>
+              <div class="location" th:text="${restaurant.location}">
+                Address
+              </div>
+            </div>
+            <a
+              th:href="@{/menu/{id}(id=${restaurant.id})}"
+              class="btn view-menu"
+              >View Menu</a
+            >
+          </div>
+        </div>
+      </div> -->
+      <!-- Dummy restaurant list -->
+      <div class="card">
+        <div class="image-container">
+          <img th:src="@{/images/McDonalds.jpg}" alt="Image of Restaurant 1" />
+        </div>
+        <div class="content">
+          <div>
+            <div class="title">McDonalds</div>
+            <div class="rating-container">
+              <div class="rating-title">Rating:</div>
+              <div class="rating">4.5</div>
+              <div class="time-title">Delivery Time:</div>
+              <div class="time">30 mins</div>
+            </div>
+            <div class="description">Italian Cuisine</div>
+            <div class="location">123 Main St, City</div>
+          </div>
+          <a class="btn view-menu">View Menu</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image-container">
+          <img th:src="@{/images/Dominos.jpg}" alt="Image of Restaurant 2" />
+        </div>
+        <div class="content">
+          <div>
+            <div class="title">Dominos</div>
+            <div class="rating-container">
+              <div class="rating-title">Rating:</div>
+              <div class="rating">4.0</div>
+              <div class="time-title">Delivery Time:</div>
+              <div class="time">25 mins</div>
+            </div>
+            <div class="description">Chinese Cuisine</div>
+            <div class="location">456 Elm St, City</div>
+          </div>
+          <a class="btn view-menu">View Menu</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image-container">
+          <img
+            th:src="@{/images/KwalityWalls.jpg}"
+            alt="Image of Restaurant 2"
+          />
+        </div>
+        <div class="content">
+          <div>
+            <div class="title">KwalityWalls</div>
+            <div class="rating-container">
+              <div class="rating-title">Rating:</div>
+              <div class="rating">3.5</div>
+              <div class="time-title">Delivery Time:</div>
+              <div class="time">55 mins</div>
+            </div>
+            <div class="description">American Cuisine</div>
+            <div class="location">456 Granden, City</div>
+          </div>
+          <a class="btn view-menu">View Menu</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image-container">
+          <img th:src="@{/images/wowMomo.jpg}" alt="Image of Restaurant 2" />
+        </div>
+        <div class="content">
+          <div>
+            <div class="title">WowMomo</div>
+            <div class="rating-container">
+              <div class="rating-title">Rating:</div>
+              <div class="rating">4.7</div>
+              <div class="time-title">Delivery Time:</div>
+              <div class="time">35 mins</div>
+            </div>
+            <div class="description">Italian Cuisine</div>
+            <div class="location">123 LA, City</div>
+          </div>
+          <a class="btn view-menu">View Menu</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 package com.example.food_express_app.entities;
 
 import java.math.BigDecimal;
+import java.util.function.IntPredicate;
 
 import javax.persistence.*;
 
@@ -37,6 +38,46 @@ public class MenuItem {
     public void setPrice(double d) {
         this.price = BigDecimal.valueOf(d);
     }
+
+	public void setPreparationTime(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setDescription(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setCategory(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setName(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getStockQuantity() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean isAvailable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public IntPredicate getCategory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     // Getters, setters, constructors
 }

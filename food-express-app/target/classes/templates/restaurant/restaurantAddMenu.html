@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Restaurant - Add Menu</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <div class="leftend">
+                <li><img src="images/logo.png" alt="Logo" width="75px" height="75px"></li>
+                <li>Food Express</li>
+            </div>
+            <div class="center">
+                <li><a href="restaurantDashboard.html">All Menu</a></li>
+                <li><a class="active" href="addMenu.html">Add Menu</a></li>
+                <li><a href="restaurantProfileUpdate.html">Update Profile</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </div>
+            <div class="rightend">
+                <a href="logout.html"><button class="btn">Logout</button></a>
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="form-content">
+            <form action="addMenuServlet" method="POST">
+                <h2>Add New Menu</h2>
+                <label for="menuName">Menu Name:</label>
+                <input type="text" id="menuName" name="menuName" placeholder="Enter menu name" required>
+
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" placeholder="Enter category" required>
+
+                <label for="menuDescription">Description:</label>
+                <textarea id="menuDescription" name="menuDescription" placeholder="Enter menu description" rows="4" required></textarea>
+
+                <label for="menuPrice">Price (₹):</label>
+                <input type="text" id="menuPrice" name="menuPrice" placeholder="Enter price" min="1" required>
+
+                <label for="prepTime">Preparation Time (in mins):</label>
+                <input type="text" id="prepTime" name="prepTime" placeholder="Enter preparation time" min="1" required>
+
+                <label for="stock">Stock:</label>
+                <input type="text" id="stock" name="stock" placeholder="Enter stock quantity" min="0" required>
+
+                <button type="submit" class="btn">Add Menu</button>
+            </form>
+        </div>
+    </header>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
