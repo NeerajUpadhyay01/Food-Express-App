@@ -27,7 +27,7 @@ public class AdminService {
     }
 
     public Admin updateAdmin(Admin admin) {
-        Optional<Admin> existingAdmin = adminRepository.findById(admin.getAdmin_id());
+        Optional<Admin> existingAdmin = adminRepository.findById(admin.getAdminId());
         if (existingAdmin.isPresent()) {
             Admin updatedAdmin = existingAdmin.get();
             updatedAdmin.setName(admin.getName());

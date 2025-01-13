@@ -36,7 +36,7 @@ public class AdminController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @ModelAttribute Admin adminDetails) {
-        adminDetails.setAdmin_id(id);
+        adminDetails.setAdminId(id);
         Admin updatedAdmin = adminService.updateAdmin(adminDetails);
         return ResponseEntity.ok(updatedAdmin);
     }
