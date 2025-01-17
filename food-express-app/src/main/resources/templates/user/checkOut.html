@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <!-- styles -->
+	    <link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	    <!-- google fonts -->
+	    <link rel="preconnect" href="https://fonts.googleapis.com">
+	    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	    <link
+	        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@700&display=swap"
+	        rel="stylesheet">
+	    <title>Checkout - Favery</title>
+	</head>
+	<body>
+		<nav>
+	        <ul class="navbar">
+	            <div class="leftend">
+	                <li><img src="assets/logo.png" alt="Logo" width="75px" height="75px"></li>
+	                <li>Favery</li>
+	            </div>
+	            <div class="center">
+	                <li><a href="home.html">Home</a></li>
+	                <li><a href="cart.html">Cart</a></li>
+	                <li><a href="#">Orders</a></li>
+	            </div>
+	            <div class="rightend">
+	                <a href="logout"><button class="btn">Logout</button></a>
+	            </div>
+	        </ul>
+	    </nav>
+	
+	    <header>
+	        <h1>Check-Out</h1>
+	    </header>
+	    
+	    <div class="checkout-container">
+	        <table class="checkout-table">
+	            <thead>
+	                <tr>
+	                    <th>Menu Name</th>
+	                    <th>Price</th>
+	                    <th>Quantity</th>
+	                    <th>Subtotal</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr>
+	                    <td>Example Item</td>
+	                    <td>₹100</td>
+	                    <td>2</td>
+	                    <td>₹200</td>
+	                </tr>
+	                <tr>
+	                    <td>Sample Item</td>
+	                    <td>₹150</td>
+	                    <td>1</td>
+	                    <td>₹150</td>
+	                </tr>
+	            </tbody>
+	        </table>
+	        
+	        <div class="grand-total">
+	            <h2>Grand Total : ₹350</h2>
+	        </div>
+	
+	        <form action="OrderServlet" method="post">
+	            <input type="hidden" name="grandTotal" value="350">
+	            <div class="form-group">
+	                <label for="address">Address:</label>
+	                <textarea id="address" name="address" required></textarea>
+	            </div>
+	
+	            <div class="form-group">
+	                <label for="payment-method">Payment Method:</label>
+	                <select id="payment-method" name="payment-method" required>
+	                    <option value="Cash on delivery">Cash on Delivery</option>
+	                    <option value="Upi">UPI</option>
+	                    <option value="Card">Credit/Debit Card</option>
+	                </select>
+	            </div>
+	
+	            <div class="confirm-order">
+	                <button type="submit" class="btn">Confirm Order</button>
+	            </div>
+	        </form>
+	    </div>
+	</body>
+</html>

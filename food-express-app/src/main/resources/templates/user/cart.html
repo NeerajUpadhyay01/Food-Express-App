@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@700&display=swap"
+        rel="stylesheet">
+    <title>Cart - Favery</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <div class="leftend">
+                <li><img src="images/logo.png" alt="Logo" width="75px" height="75px"></li>
+                <li>Favery</li>
+            </div>
+            <div class="center">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="updateProfile.html">Update Profile</a></li>
+                <li class="active"><a href="#">Cart</a></li>
+                <li><a href="orderHistory.html">Orders</a></li>
+            </div>
+            <div class="rightend">
+                <a href="logout"><button class="btn">Logout</button></a>
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Cart</h1>
+    </header>
+
+    <div class="container">
+        <!-- Dynamically generated cart items go here -->
+        <!-- Example of a cart item -->
+        <div class="cart-item">
+            <div class="image-container">
+                <img src="images/A2B.jpg" alt="Menu Image of Item">
+            </div>
+            <div class="details">
+                <div class="restaurant-info">
+                    <div class="restaurant-name">Restaurant Name</div>
+                    <div class="location">Restaurant Address</div>
+                </div>
+                <hr class="divider">
+                <div class="menu-info">
+                    <div class="menu-name">Menu Item Name</div>
+                </div>
+                <form action="cart" method="post">
+                    <input type="hidden" name="menuId" value="menu-id">
+                    <div class="menu-info">
+                        <div class="price">₹Price</div>
+                        <div class="quantity-container">
+                            <button type="button" class="quantity-btn minus">-</button>
+                            <input type="text" name="quantity" value="1" class="quantity-number" readonly>
+                            <button type="button" class="quantity-btn plus">+</button>
+                        </div>
+                    </div>
+                    <div class="sub-total">
+                        <div>
+                            <label for="sub-total">Sub Total:</label>
+                            <input type="text" id="sub-total" name="sub-total" value="Sub Total Amount" readonly>
+                        </div>
+                        <div class="rightend">
+                            <button type="submit" name="action" value="update" class="btn">Update</button>
+                            <button type="submit" name="action" value="remove" class="btn">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Message for empty cart -->
+        <!-- <p>Your cart is empty.</p> -->
+    </div>
+
+    <!-- Add/Checkout Buttons -->
+    <div class="proceed-to-checkout">
+        <form action="menu.html" method="post" style="margin-right: 15px;">
+            <button type="submit" class="btn">Add more items</button>
+        </form>
+        <form action="checkout.html" method="post">
+            <button type="submit" class="btn">Proceed To Checkout</button>
+        </form>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

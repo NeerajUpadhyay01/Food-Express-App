@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:wght@700&display=swap"
+        rel="stylesheet">
+    <title>Order History - Favery</title>
+</head>
+
+<body>
+    <nav>
+        <ul class="navbar">
+            <div class="leftend">
+                <li><img src="assets/logo.png" alt="Logo" width="75px" height="75px"></li>
+                <li>Favery</li>
+            </div>
+            <div class="center">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="updateProfile.html">Update Profile</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li class="active"><a href="#">Orders</a></li>
+            </div>
+            <div class="rightend">
+                <a href="logout.html"><button class="btn">Logout</button></a>
+            </div>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Order History</h1>
+    </header>
+
+    <div class="checkout-container">
+        <!-- Example table with placeholder data -->
+        <table class="checkout-table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>View Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>USER12345</td>
+                    <td>ORD001</td>
+                    <td>2025-01-15</td>
+                    <td>₹ 1,250.00</td>
+                    <td>Delivered</td>
+                    <td>
+                        <a href="viewOrderItems.html?orderId=ORD001" class="btn view-btn">View</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>USER67890</td>
+                    <td>ORD002</td>
+                    <td>2025-01-14</td>
+                    <td>₹ 890.00</td>
+                    <td>Processing</td>
+                    <td>
+                        <a href="viewOrderItems.html?orderId=ORD002" class="btn view-btn">View</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Message for no history -->
+        <p style="text-align: center;">No history found</p>
+    </div>
+</body>
+
+</html>

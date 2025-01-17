@@ -35,7 +35,7 @@ public class RestaurantControllerTests {
 
     @Test
     public void getRestaurantById() throws Exception {
-        Restaurant restaurant = new Restaurant();
+        Optional<Restaurant> restaurant = Optional.of(new Restaurant());
         when(restaurantService.getRestaurantById(1L)).thenReturn(restaurant);
         mockMvc.perform(get("/restaurants/1"))
                 .andExpect(status().isOk())
