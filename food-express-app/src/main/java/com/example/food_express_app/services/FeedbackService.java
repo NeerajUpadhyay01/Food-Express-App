@@ -61,4 +61,9 @@ public class FeedbackService {
         List<Feedback> feedbacks = feedbackRepository.findByRestaurant_RestaurantId(restaurantId);
         return feedbacks.stream().mapToDouble(Feedback::getRating).average().orElse(0.0);
     }
+
+    public List<Feedback> getAllFeedbacks() {
+        List<Feedback> feedbacks = feedbackRepository.findAll();
+        return feedbacks;
+    }
 }
