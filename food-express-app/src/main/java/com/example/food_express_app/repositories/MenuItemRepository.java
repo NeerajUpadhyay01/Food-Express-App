@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.food_express_app.entities.MenuItem;
+import com.example.food_express_app.entities.Restaurant;
 
 @Repository
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
@@ -13,5 +14,5 @@ public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
 
     List<MenuItem> findByAvailableAndStockQuantityGreaterThan(boolean available, int quantity);
 
-    List<MenuItem> findAllByAvailable(boolean available);
+    List<MenuItem> findAllByRestaurant(Restaurant restaurant);
 }
