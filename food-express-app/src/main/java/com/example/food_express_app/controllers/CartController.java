@@ -28,6 +28,20 @@ public class CartController {
         return ResponseEntity.ok().body(cartItems);
     }
 
+    @PatchMapping("/items/{userId}/{cartItemId}/increase")
+    public ResponseEntity<List<CartItem>> increaseCartItemQuantity(@PathVariable Long userId,
+            @PathVariable Long cartItemId) {
+        List<CartItem> cartItems = cartService.increaseCartItemQuantity(userId, cartItemId);
+        return ResponseEntity.ok().body(cartItems);
+    }
+
+    @PatchMapping("/items/{userId}/{cartItemId}/decrease")
+    public ResponseEntity<List<CartItem>> decreaseCartItemQuantity(@PathVariable Long userId,
+            @PathVariable Long cartItemId) {
+        List<CartItem> cartItems = cartService.decreaseCartItemQuantity(userId, cartItemId);
+        return ResponseEntity.ok().body(cartItems);
+    }
+
     @DeleteMapping("/items/{userId}/{cartItemId}")
     public ResponseEntity<List<CartItem>> removeCartItem(@PathVariable Long userId, @PathVariable Long cartItemId) {
         List<CartItem> cartItems = cartService.removeCartItem(userId, cartItemId);
