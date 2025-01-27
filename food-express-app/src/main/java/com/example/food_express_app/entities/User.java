@@ -1,11 +1,13 @@
 package com.example.food_express_app.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -15,33 +17,26 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
-    private String userId;
     private String name;
     private String password;
     private String contact;
     private String address;
     private boolean active = true;
+
+    @Column(nullable = false, unique = true)
     private String email;
 
-    // @OneToMany(mappedBy = "user")
-    // private List<Order> orderHistory;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Order> orders = new ArrayList<>();
 
-    @PrePersist
-    public void generateUserId() {
-        this.userId = "USER" + System.currentTimeMillis();
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<CartItem> cartItems = new ArrayList<>();
 
-    public void setUsername(String username) {
-        this.name = username;
-    }
-
-    public void setId(String id) {
-        this.userId = id;
-    }
-
-    public void setPhone(String phone) {
-        this.contact = phone;
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Feedback> feedbacks = new ArrayList<>();
 }

@@ -41,11 +41,6 @@ public class OrderService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add));
         Order placedOrder = orderRepository.save(order);
 
-        cartItems.forEach(cartItem -> {
-            cartItem.setOrder(placedOrder);
-            cartService.updateCartItem(cartItem);
-        });
-
         cartService.clearCart(userId);
         return placedOrder;
     }
@@ -80,6 +75,7 @@ public class OrderService {
     }
 
     public void cancelOrder(Long orderId) {
-        orderRepository.deleteById(orderId);
+        updateOrderStatus(orderId, Order.Status.CANCELLED);
+        // orderRepository.deleteById(orderId);
     }
 }

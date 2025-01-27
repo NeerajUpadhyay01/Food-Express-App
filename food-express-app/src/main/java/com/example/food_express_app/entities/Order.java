@@ -7,10 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +28,6 @@ public class Order {
     private User user;
 
     @ManyToOne
-    @JsonIgnore
     private Restaurant restaurant;
 
     private BigDecimal totalAmount;
@@ -40,15 +39,18 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    private Timestamp createdAt;
+    private LocalDate createdAt;
     private String address;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<CartItem> cartItems = new ArrayList<>();
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Feedback> feedbacks = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {
-        this.createdAt = new Timestamp(System.currentTimeMillis());
+        this.createdAt = LocalDate.now();
     }
 }
