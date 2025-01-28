@@ -8,6 +8,7 @@ import com.example.food_express_app.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -25,6 +26,9 @@ public class OrderService {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     public Order placeOrder(Long userId, Order order) {
         List<CartItem> cartItems = cartService.findByUserId(userId);
         order.setCartItems(cartItems);
@@ -41,8 +45,13 @@ public class OrderService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add));
         Order placedOrder = orderRepository.save(order);
 
-        cartService.clearCart(userId);
+        clearCart(userId);
         return placedOrder;
+    }
+
+    public void clearCart(Long userId) {
+        String url = "http://localhost:8080/cart/items/" + userId;
+        restTemplate.delete(url);
     }
 
     public Optional<Order> getOrderById(Long orderId) {
@@ -53,20 +62,6 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    // public Order updateOrder(Long orderId, Order orderDetails) {
-    // return orderRepository.findById(orderId).map(order -> {
-    // order.setUser(orderDetails.getUser());
-    // order.setRestaurant(orderDetails.getRestaurant());
-    // order.setCreatedAt(orderDetails.getCreatedAt());
-
-    // // Update cart items
-    // order.getCartItems().clear();
-    // order.getCartItems().addAll(orderDetails.getCartItems());
-
-    // return orderRepository.save(order);
-    // }).orElseThrow(() -> new RuntimeException("Order not found"));
-    // }
-
     public Order updateOrderStatus(Long orderId, Order.Status status) {
         return orderRepository.findById(orderId).map(order -> {
             order.setStatus(status);
@@ -76,6 +71,5 @@ public class OrderService {
 
     public void cancelOrder(Long orderId) {
         updateOrderStatus(orderId, Order.Status.CANCELLED);
-        // orderRepository.deleteById(orderId);
     }
 }
