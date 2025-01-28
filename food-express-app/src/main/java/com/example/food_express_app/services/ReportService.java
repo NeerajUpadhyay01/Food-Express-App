@@ -78,6 +78,22 @@ public class ReportService {
         return monthlyReport;
     }
 
+    public Report getCustomReport(Long restaurantId, LocalDate startDate, LocalDate endDate) {
+        Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(
+                () -> new RuntimeException("Restaurant not found"));
+        List<Order> orders = orderRepository.findByRestaurantAndCreatedAtBetween(restaurant, startDate, endDate);
+
+        Report customReport = new Report();
+        customReport.setStartDate(startDate);
+        customReport.setEndDate(endDate);
+        customReport.setTotalRevenue(calculateTotalRevenue(orders));
+        customReport.setOrdersServed(calculateOrdersServed(orders));
+        customReport.setOrderStatusCount(generateOrderStatusReport(restaurantId, startDate, endDate));
+        customReport.setBestPreferredMenuItem(getBestPreferredMenuItem(restaurantId, startDate, endDate));
+
+        return customReport;
+    }
+
     public BigDecimal calculateTotalRevenue(List<Order> orders) {
         return orders.stream()
                 .map(order -> order.getTotalAmount() != null ? order.getTotalAmount() : BigDecimal.ZERO)
