@@ -33,7 +33,7 @@ public class UserService {
     }
 
     public User updateProfile(User user) {
-        User existingUser = userRepository.findByUserId(user.getUserId())
+        User existingUser = userRepository.findById(user.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         existingUser.setName(user.getName());
         existingUser.setAddress(user.getAddress());
@@ -42,20 +42,13 @@ public class UserService {
         return userRepository.save(existingUser);
     }
 
-    public void changePassword(String userId, String oldPassword, String newPassword) {
-        User user = userRepository.findByUserId(userId)
+    public void changePassword(Long id, String oldPassword, String newPassword) {
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         if (!user.getPassword().equals(oldPassword)) {
             throw new RuntimeException("Old password is incorrect");
         }
         user.setPassword(newPassword);
-        userRepository.save(user);
-    }
-
-    public void toggleAccountStatus(String userId) {
-        User user = userRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        user.setActive(!user.isActive());
         userRepository.save(user);
     }
 
@@ -67,8 +60,16 @@ public class UserService {
         session.invalidate();
     }
 
-    public Optional<User> findByUserId(String userId) {
-        Optional<User> user = userRepository.findByUserId(userId);
-        return user;
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public void deleteUser(Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("User not found");
+        }
     }
 }

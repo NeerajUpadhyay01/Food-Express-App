@@ -83,24 +83,26 @@ public class UserController {
         return "/user/profile";
     }
 
-    @GetMapping("/profile/update")
-    public String showUpdateProfileForm(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("loggedInUser");
+    @GetMapping("/profile/update/{id}")
+    public String showUpdateProfileForm(Model model, HttpSession session, @PathVariable Long id) {
+        // User user = (User) session.getAttribute("loggedInUser");
+        User user = userService.getUserById(id);
         if (user == null) {
             return "redirect:/users/login";
         }
         model.addAttribute("user", user);
-        return "/user/update-profile";
+        return "user/update-profile";
     }
 
-    @GetMapping("/profile/change-password")
-    public String showChangePasswordForm(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("loggedInUser");
+    @GetMapping("/profile/change-password/{id}")
+    public String showChangePasswordForm(Model model, HttpSession session, @PathVariable Long id) {
+        // User user = (User) session.getAttribute("loggedInUser");
+        User user = userService.getUserById(id);
         if (user == null) {
             return "redirect:/users/login";
         }
         model.addAttribute("user", user);
-        return "/user/change-password";
+        return "user/change-password";
     }
 
     @PostMapping("/profile/update")
@@ -116,11 +118,11 @@ public class UserController {
         }
     }
 
-    @PostMapping("/profile/change-password")
-    public String changePassword(@RequestParam String userId, @RequestParam String oldPassword,
+    @PostMapping("/profile/change-password/{id}")
+    public String changePassword(@PathVariable Long id, @RequestParam String oldPassword,
             @RequestParam String newPassword) {
         try {
-            userService.changePassword(userId, oldPassword, newPassword);
+            userService.changePassword(id, oldPassword, newPassword);
             // return ResponseEntity.ok().body("Password changed successfully!!");
             return "redirect:/users/profile";
         } catch (Exception e) {

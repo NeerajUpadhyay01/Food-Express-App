@@ -2,7 +2,6 @@ package com.example.food_express_app.controllers;
 
 import com.example.food_express_app.entities.Order;
 import com.example.food_express_app.entities.CartItem;
-import com.example.food_express_app.services.CartService;
 import com.example.food_express_app.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,13 +34,6 @@ public class OrderController {
         List<Order> orders = orderService.getAllOrders();
         return ResponseEntity.ok(orders);
     }
-
-    // @PutMapping("/{orderId}")
-    // public ResponseEntity<Order> updateOrder(@PathVariable Long orderId,
-    // @ModelAttribute Order orderDetails) {
-    // Order updatedOrder = orderService.updateOrder(orderId, orderDetails);
-    // return ResponseEntity.ok(updatedOrder);
-    // }
 
     @PutMapping("/{orderId}/status")
     public ResponseEntity<Order> updateOrderStatus(@PathVariable Long orderId, @RequestParam Order.Status status) {

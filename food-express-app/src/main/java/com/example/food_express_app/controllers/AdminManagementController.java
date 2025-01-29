@@ -22,8 +22,8 @@ public class AdminManagementController {
     @Autowired
     private RestaurantService restaurantService;
 
-    // @Autowired
-    // private FeedbackService feedbackService;
+    @Autowired
+    private FeedbackService feedbackService;
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -37,11 +37,11 @@ public class AdminManagementController {
         return ResponseEntity.ok(restaurants);
     }
 
-    // @GetMapping("/feedbacks")
-    // public ResponseEntity<List<Feedback>> getAllFeedbacks() {
-    // List<Feedback> feedbacks = feedbackService.getAllFeedbacks();
-    // return ResponseEntity.ok(feedbacks);
-    // }
+    @GetMapping("/feedbacks")
+    public ResponseEntity<List<Feedback>> getAllFeedbacks() {
+        List<Feedback> feedbacks = feedbackService.getAllFeedbacks();
+        return ResponseEntity.ok(feedbacks);
+    }
 
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@ModelAttribute User user) {
@@ -55,12 +55,11 @@ public class AdminManagementController {
         return ResponseEntity.ok(createdRestaurant);
     }
 
-    // @PostMapping("/feedbacks")
-    // public ResponseEntity<Feedback> createFeedback(@ModelAttribute Feedback
-    // feedback) {
-    // Feedback createdFeedback = feedbackService.createFeedback(feedback);
-    // return ResponseEntity.ok(createdFeedback);
-    // }
+    @PostMapping("/feedbacks/{orderId}")
+    public ResponseEntity<Feedback> createFeedback(@PathVariable Long orderId, @ModelAttribute Feedback feedback) {
+        Feedback createdFeedback = feedbackService.submitFeedback(orderId, feedback);
+        return ResponseEntity.ok(createdFeedback);
+    }
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
@@ -74,9 +73,9 @@ public class AdminManagementController {
         return ResponseEntity.noContent().build();
     }
 
-    // @DeleteMapping("/feedbacks/{id}")
-    // public ResponseEntity<Void> deleteFeedback(@PathVariable Long id) {
-    // feedbackService.deleteFeedback(id);
-    // return ResponseEntity.noContent().build();
-    // }
+    @DeleteMapping("/feedbacks/{id}")
+    public ResponseEntity<Void> deleteFeedback(@PathVariable Long id) {
+        feedbackService.deleteFeedback(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -52,8 +52,10 @@ public class CartService {
     }
 
     public void clearCart(Long userId) {
-        List<CartItem> cartItems = cartItemRepository.findByUser_userId(userId);
-        cartItemRepository.deleteAll(cartItems);
+        List<CartItem> cartItems = findByUserId(userId);
+        if (!cartItems.isEmpty()) {
+            cartItemRepository.deleteAll(cartItems);
+        }
     }
 
     public List<CartItem> findByUserId(Long userId) {
@@ -62,5 +64,33 @@ public class CartService {
 
     public void updateCartItem(CartItem cartItem) {
         cartItemRepository.save(cartItem);
+    }
+
+    public List<CartItem> increaseCartItemQuantity(Long userId, Long cartItemId) {
+        CartItem cartItem = findByCartItemId(cartItemId);
+        if (cartItem != null) {
+            MenuItem menuItem = cartItem.getMenuItem();
+            cartItem.setQuantity(cartItem.getQuantity() + 1);
+            cartItem.setPrice(menuItem.getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())).doubleValue());
+            cartItemRepository.save(cartItem);
+        }
+        return findByUserId(userId);
+    }
+
+    public List<CartItem> decreaseCartItemQuantity(Long userId, Long cartItemId) {
+        CartItem cartItem = findByCartItemId(cartItemId);
+        if (cartItem != null && cartItem.getQuantity() > 1) {
+            MenuItem menuItem = cartItem.getMenuItem();
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+            cartItem.setPrice(menuItem.getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())).doubleValue());
+            cartItemRepository.save(cartItem);
+        } else if (cartItem != null && cartItem.getQuantity() == 1) {
+            removeCartItem(userId, cartItemId);
+        }
+        return findByUserId(userId);
+    }
+
+    private CartItem findByCartItemId(Long cartItemId) {
+        return cartItemRepository.findById(cartItemId).orElse(null);
     }
 }

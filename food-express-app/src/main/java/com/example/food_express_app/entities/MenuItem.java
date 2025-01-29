@@ -16,15 +16,25 @@ import lombok.AllArgsConstructor;
 public class MenuItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long menuItemId;
 
+    @Column(nullable = false, unique = true)
     private String name;
+
     private String category;
     private String description;
     private BigDecimal price;
     private Integer preparationTime;
     private Integer stockQuantity;
     private boolean available;
+
+    @Column(length = 500)
+    private String image;
+
+    private Boolean isVeg;
+
+    @ManyToOne
+    private Restaurant restaurant;
 
     public void setAvailable(boolean available) {
         this.available = available;
@@ -38,5 +48,4 @@ public class MenuItem {
         this.price = BigDecimal.valueOf(d);
     }
 
-    // Getters, setters, constructors
 }

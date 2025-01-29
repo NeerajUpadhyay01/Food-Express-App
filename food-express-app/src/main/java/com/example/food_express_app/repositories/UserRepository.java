@@ -9,11 +9,7 @@ import com.example.food_express_app.entities.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUserId(String userId);
-
-    Optional<User> findByNameAndPassword(String name, String password);
-
-    Optional<User> findByName(String name);
+    Optional<User> findById(Long id);
 
     Optional<User> findByEmailAndPassword(String email, String password);
 
