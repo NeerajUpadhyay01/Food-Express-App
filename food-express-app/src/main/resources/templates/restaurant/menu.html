@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <h1>Restaurant Menu</h1>
+    <form
+      th:action="@{/restaurant/{id}/menu(id=${restaurantId})}"
+      method="post"
+      th:object="${menuItem}"
+    >
+      <label for="name">Menu Item Name:</label>
+      <input type="text" id="name" th:field="*{name}" required />
+
+      <label for="description">Description:</label>
+      <input type="text" id="description" th:field="*{description}" required />
+
+      <label for="price">Price:</label>
+      <input type="number" id="price" th:field="*{price}" required />
+
+      <label for="file">Image URL:</label>
+      <input type="text" id="file" th:field="*{file}" required />
+
+      <button type="submit">Add Menu Item</button>
+    </form>
+    <h2>Existing Menu Items</h2>
+    <ul>
+      <li th:each="item : ${menuItems}">
+        <span th:text="${item.name}">Menu Item Name</span> -
+        <span th:text="${item.description}">Description</span> -
+        <span th:text="${item.price}">Price</span>
+      </li>
+    </ul>
+  </body>
+</html>

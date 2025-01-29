@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Restaurant Details</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="my-4">Restaurant Details</h1>
+      <p>
+        <strong>Name:</strong>
+        <span th:text="${restaurant.name}">Restaurant Name</span>
+      </p>
+      <p>
+        <strong>Address:</strong>
+        <span th:text="${restaurant.address}">Restaurant Address</span>
+      </p>
+      <p>
+        <strong>Average Rating:</strong>
+        <span th:text="${averageRating}">0.0</span>
+      </p>
+      <a href="/restaurants/list" class="btn btn-secondary">Back to List</a>
+
+      <h2 class="my-4">Feedback</h2>
+      <div th:each="feedback : ${feedbacks}">
+        <p>
+          <strong>User:</strong>
+          <span th:text="${feedback.user.name}">User Name</span>
+        </p>
+        <p>
+          <strong>Rating:</strong> <span th:text="${feedback.rating}">0</span>
+        </p>
+        <p>
+          <strong>Review:</strong>
+          <span th:text="${feedback.review}">Review Text</span>
+        </p>
+        <hr />
+      </div>
+
+      <h2 class="my-4">Submit Feedback</h2>
+      <form th:action="@{/feedback}" method="post" th:object="${newFeedback}">
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          <input
+            type="number"
+            class="form-control"
+            id="rating"
+            th:field="*{rating}"
+            min="1"
+            max="5"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="review" class="form-label">Review</label>
+          <textarea
+            class="form-control"
+            id="review"
+            th:field="*{review}"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

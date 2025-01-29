@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Payment Cancelled</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 mx-auto text-center">
+          <div class="card">
+            <div class="card-body">
+              <div class="mb-4">
+                <svg
+                  class="text-warning"
+                  width="64"
+                  height="64"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <h2 class="card-title mb-4">Payment Cancelled</h2>
+              <p class="card-text mb-4">
+                Your payment was cancelled. No charges were made.
+              </p>
+              <div class="d-grid gap-2">
+                <a href="/cart" class="btn btn-primary">Return to Cart</a>
+                <a href="/" class="btn btn-outline-secondary">Back to Home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

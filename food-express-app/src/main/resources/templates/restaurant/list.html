@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Restaurant List</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="my-4">Restaurant List</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="restaurant : ${restaurants}">
+            <td th:text="${restaurant.name}">Restaurant Name</td>
+            <td th:text="${restaurant.address}">Restaurant Address</td>
+            <td>
+              <a
+                th:href="@{/restaurants/{id}(id=${restaurant.id})/edit}"
+                class="btn btn-primary btn-sm"
+                >Edit</a
+              >
+              <a
+                th:href="@{/restaurant/{id}(id=${restaurant.id})}"
+                class="btn btn-info btn-sm"
+                >Details</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="/restaurants/register" class="btn btn-success"
+        >Add New Restaurant</a
+      >
+    </div>
+  </body>
+</html>

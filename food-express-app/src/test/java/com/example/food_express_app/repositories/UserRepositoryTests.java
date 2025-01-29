@@ -23,7 +23,7 @@ public class UserRepositoryTests {
         user.setPassword("password");
         userRepository.save(user);
 
-        Optional<User> foundUser = userRepository.findByUserId(user.getUserId());
+        Optional<User> foundUser = userRepository.findById(user.getUserId());
         assertThat(foundUser).isPresent();
         assertThat(foundUser.get().getName()).isEqualTo("testUser");
     }
